@@ -3,9 +3,7 @@ import PhoneList from "./phoneList";
 import useFetch from "./useFetch";
 
 const Home= () => {
-    const {data:phones,isPending,error}=useFetch('http://localhost:8000/phones');
-  
-    
+    const {data:phones,isPending,error}=useFetch('http://localhost:8000/phones');  
   
     return (  
         <div className="Home">

@@ -7,8 +7,8 @@ const PhoneList = ({phones,title}) => {
             {phones.map((phone)=>(
             <div className="phone-preview" key={phone.id}>
 
-                <h2>{phone.title}</h2>
-                <p>written by {phone.author}</p>
+                <h2>{phone.name}</h2>
+                <p>{phone.number}</p>
 
             </div>
         
