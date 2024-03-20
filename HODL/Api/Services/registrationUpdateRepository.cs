@@ -7,6 +7,9 @@ using System.Linq;
 using System.Web;
 using Api.Models;
 using Api.Classes;
+using System.Threading.Tasks;
+using System.Net.Http;
+using System.IO;
 
 namespace API.Services
 {
@@ -22,32 +25,37 @@ namespace API.Services
             {
                 Conn.Open();
                 string query = "UPDATE registration SET " +
-                "Role = @Role, " +
-                "CompanyRegNum = @CompanyRegNum, " +
-                "CompanyName = @CompanyName, " +
-                "CompanyVat = @CompanyVat, " +
-                "TrustRegNum = @TrustRegNum, " +
-                "TrustName = @TrustName, " +
-                "IdNumber = @IdNumber, " +
-                "PassportName=@PassportName,"+
-                "Name = @Name, " +
-                "LastName = @LastName, " +
-                "MiddleName = @MiddleName, " +
-                "Email = @Email, " +
-                "Password = @Password, " +
-                "City = @City, " +
-                "Province=@Province," +
-                "Country = @Country, " +
-                "PostalCode = @PostalCode, " +
-                "Suburb = @Suburb, " +
-                "StreetNumber = @StreetNumber, " +
-                "StreetName = @StreetName, " +
-                "PhoneNumber = @PhoneNumber, " +
-                "EmailVerified = @EmailVerified, " +
-                "IdVerified = @IdVerified, " +
-                "TwoFactorAuthLink = @TwoFactorAuthLink, " +
-                "TwoFactorAuthStatus = @TwoFactorAuthStatus " +
-                "WHERE Email = @Email";
+     "Role = @Role, " +
+     "CompanyRegNum = @CompanyRegNum, " +
+     "CompanyName = @CompanyName, " +
+     "CompanyVat = @CompanyVat, " +
+     "TrustRegNum = @TrustRegNum, " +
+     "TrustName = @TrustName, " +
+     "IdentityNumber = @IdentityNumber, " +
+     "Passport = @Passport, " +
+     "Name = @Name, " +
+     "LastName = @LastName, " +
+     "MiddleName = @MiddleName, " +
+     "Email = @Email, " +
+     "Password = @Password, " +
+     "City = @City, " +
+     "Province = @Province, " +
+     "Country = @Country, " +
+     "PostalCode = @PostalCode, " +
+     "Suburb = @Suburb, " +
+     "StreetNumber = @StreetNumber, " +
+     "StreetName = @StreetName, " +
+     "PhoneNumber = @PhoneNumber, " +
+     "EmailVerified = @EmailVerified, " +
+     "IdVerified = @IdVerified, " +
+     "TwoFactorAuthLink = @TwoFactorAuthLink, " +
+     "TwoFactorAuthStatus = @TwoFactorAuthStatus, " +
+     "DriversFront = @DriversFront, " +
+     "DriversBack = @DriversBack, " +
+     "IdCardFront = @IdCardFront, " +
+     "IdCardBack = @IdCardBack, " +
+     "PassportFront = @PassportFront " +
+     "WHERE Email = @Email";
 
                 var cmd = new MySqlCommand(query, Conn);
                 cmd.Parameters.AddWithValue("@Role", registrationm.Role);
@@ -56,8 +64,8 @@ namespace API.Services
                 cmd.Parameters.AddWithValue("@CompanyVat", registrationm.CompanyVat);
                 cmd.Parameters.AddWithValue("@TrustRegNum", registrationm.TrustRegNum);
                 cmd.Parameters.AddWithValue("@TrustName", registrationm.TrustName);
-                cmd.Parameters.AddWithValue("@IdNumber", registrationm.IdNumber);
-                cmd.Parameters.AddWithValue("@PassportName", registrationm.PassportName);
+                cmd.Parameters.AddWithValue("@IdentityNumber", registrationm.IdentityNumber);
+                cmd.Parameters.AddWithValue("@Passport", registrationm.Passport);
                 cmd.Parameters.AddWithValue("@Name", registrationm.Name);
                 cmd.Parameters.AddWithValue("@LastName", registrationm.LastName);
                 cmd.Parameters.AddWithValue("@MiddleName", registrationm.MiddleName);
@@ -73,6 +81,11 @@ namespace API.Services
                 cmd.Parameters.AddWithValue("@PhoneNumber", registrationm.PhoneNumber);
                 cmd.Parameters.AddWithValue("@EmailVerified", registrationm.EmailVerified);
                 cmd.Parameters.AddWithValue("@IdVerified", registrationm.IdVerified);
+                cmd.Parameters.AddWithValue("@DriversFront", registrationm.DriversFront);
+                cmd.Parameters.AddWithValue("@DriversBack", registrationm.DriversBack);
+                cmd.Parameters.AddWithValue("@IdCardFront", registrationm.IdCardFront);
+                cmd.Parameters.AddWithValue("@IdCardBack", registrationm.IdCardBack);
+                cmd.Parameters.AddWithValue("@PassportFront", registrationm.PassportFront);
                 cmd.Parameters.AddWithValue("@TwoFactorAuthLink", registrationm.TwoFactorAuthLink);
                 cmd.Parameters.AddWithValue("@TwoFactorAuthStatus", registrationm.TwoFactorAuthStatus);
                 cmd.Parameters.AddWithValue("@RegistrationID", registrationm.RegistrationID);
@@ -80,6 +93,8 @@ namespace API.Services
                 dt.Load(cmd.ExecuteReader());
                 Conn.Close();
                 registrationm.errorMessage = "Success";
+         
+
             }
             catch (Exception ee)
             {
@@ -87,6 +102,8 @@ namespace API.Services
             }
 
             return registrationm;
+         
         }
+      
     }
 }

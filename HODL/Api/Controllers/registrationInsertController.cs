@@ -38,7 +38,7 @@ namespace API.Controllers
             if (dt != null)
                 return this.Request.CreateResponse(HttpStatusCode.OK, dt);
             var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
-            {Content = new StringContent("Unable to Insert registration"), ReasonPhrase = "Unable to Insert registration"};
+            { Content = new StringContent("Unable to Insert registration"), ReasonPhrase = "Unable to Insert registration" };
             return (resp);
         }
     }

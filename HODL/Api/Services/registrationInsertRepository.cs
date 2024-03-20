@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using Api.Models;
 using Api.Classes;
+using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace API.Services
 {
@@ -21,9 +23,11 @@ namespace API.Services
             try
             {
                 Conn.Open();
-                string query = "Insert into  registration(registrationID , Role , CompanyRegNum , CompanyName , CompanyVat , TrustRegNum , TrustName , IdNumber ,PassportName, Name , LastName , MiddleName , Email , " +
-                    "Password , City ,Province, Country , PostalCode , Suburb , StreetNumber , StreetName, PhoneNumber, EmailVerified, IdVerified, TwoFactorAuthLink, TwoFactorAuthStatus )" +
-                    " Values(@registrationID ,@Role, @CompanyRegNum, @CompanyName , @CompanyVat ,@TrustRegNum, @TrustName, @IdNumber ,@PassportName, @Name , @LastName , @MiddleName , @Email , @Password , @City ,@Province, @Country , @PostalCode , @Suburb , @StreetNumber , @StreetName , @PhoneNumber , @EmailVerified , @IdVerified , @TwoFactorAuthLink , @TwoFactorAuthStatus );";
+                string query = "INSERT INTO registration (registrationID, Role, CompanyRegNum, CompanyName, CompanyVat, TrustRegNum, TrustName, IdentityNumber, Passport, Name, LastName, MiddleName, Email, " +
+                    "Password, City, Province, Country, PostalCode, Suburb, StreetNumber, StreetName, PhoneNumber, EmailVerified, IdVerified, TwoFactorAuthLink, TwoFactorAuthStatus, DriversFront, DriversBack, IdCardFront, IdCardBack, PassportFront)" +
+                    " VALUES (@registrationID, @Role, @CompanyRegNum, @CompanyName, @CompanyVat, @TrustRegNum, @TrustName, @IdentityNumber, @Passport, @Name, @LastName, @MiddleName, @Email, " +
+                    "@Password, @City, @Province, @Country, @PostalCode, @Suburb, @StreetNumber, @StreetName, @PhoneNumber, @EmailVerified, @IdVerified, @TwoFactorAuthLink, @TwoFactorAuthStatus, @DriversFront, @DriversBack, @IdCardFront, @IdCardBack, @PassportFront)";
+
                 var cmd = new MySqlCommand(query, Conn);
                 cmd.Parameters.AddWithValue(@"registrationID", registrationm.RegistrationID);
                 cmd.Parameters.AddWithValue(@"Role", registrationm.Role);
@@ -32,8 +36,8 @@ namespace API.Services
                 cmd.Parameters.AddWithValue(@"CompanyVat", registrationm.CompanyVat);
                 cmd.Parameters.AddWithValue(@"TrustRegNum", registrationm.TrustRegNum);
                 cmd.Parameters.AddWithValue(@"TrustName", registrationm.TrustName);
-                cmd.Parameters.AddWithValue(@"IdNumber", registrationm.IdNumber);
-                cmd.Parameters.AddWithValue(@"PassportName", registrationm.PassportName);
+                cmd.Parameters.AddWithValue(@"IdentityNumber", registrationm.IdentityNumber);
+                cmd.Parameters.AddWithValue(@"Passport", registrationm.Passport);
                 cmd.Parameters.AddWithValue(@"Name", registrationm.Name);
                 cmd.Parameters.AddWithValue(@"LastName", registrationm.LastName);
                 cmd.Parameters.AddWithValue(@"MiddleName", registrationm.MiddleName);
@@ -50,6 +54,11 @@ namespace API.Services
                 cmd.Parameters.AddWithValue(@"EmailVerified", registrationm.EmailVerified);
                 cmd.Parameters.AddWithValue(@"IdVerified", registrationm.IdVerified);
                 cmd.Parameters.AddWithValue(@"TwoFactorAuthLink", registrationm.TwoFactorAuthLink);
+                cmd.Parameters.AddWithValue("@DriversFront", registrationm.DriversFront);
+                cmd.Parameters.AddWithValue("@DriversBack", registrationm.DriversBack);
+                cmd.Parameters.AddWithValue("@IdCardFront", registrationm.IdCardFront);
+                cmd.Parameters.AddWithValue("@IdCardBack", registrationm.IdCardBack);
+                cmd.Parameters.AddWithValue("@PassportFront", registrationm.PassportFront);
                 cmd.Parameters.AddWithValue(@"TwoFactorAuthStatus", registrationm.TwoFactorAuthStatus);
                 dt.Load(cmd.ExecuteReader());
                 Conn.Close();
@@ -62,6 +71,8 @@ namespace API.Services
             }
 
             return registrationm;
+
         }
+        
     }
 }

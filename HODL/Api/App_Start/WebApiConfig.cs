@@ -11,7 +11,17 @@ namespace API
         {
             try
             {
-                config.EnableCors();
+              
+
+              
+                config.Routes.MapHttpRoute(
+                    name: "honeycombApi",
+                    routeTemplate: "api/honeycomb",
+                    defaults: new { controller = "Honeycomb" }
+                );
+            
+            
+            config.EnableCors();
                 config.Formatters.XmlFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("multipart/form-data"));
                 config.Routes.MapHttpRoute(name: "addressbookFilterSelect", routeTemplate: "api/addressbookFilterSelect/{id}", defaults: new
                 {

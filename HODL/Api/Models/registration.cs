@@ -10,7 +10,7 @@ namespace Api.Models
     public class registration
     {
 
-        public int RegistrationID
+        public string RegistrationID
         {
             get;
             set;
@@ -47,12 +47,12 @@ namespace Api.Models
             get;
             set;
         }
-        public string IdNumber
+        public string IdentityNumber
         {
             get;
             set;
         }
-        public int PassportName
+        public string Passport
         {
             get;
             set;
@@ -158,7 +158,13 @@ namespace Api.Models
             get;
             set;
         }
-
+        public string IdBookFront { get; set; }
+        public string DriversFront { get; set; }
+        public string DriversBack { get; set; }
+        public string IdCardFront { get; set; }
+        public string IdCardBack { get; set; }
+        public string PassportFront { get; set; }
+        public string HoneyCombResult { get; set; }
         public string errorMessage
         {
             get;
