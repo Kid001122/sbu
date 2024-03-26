@@ -1,0 +1,12 @@
+@HodlSolution_HostAddress = http://localhost:5260
+
+GET {{HodlSolution_HostAddress}}/weatherforecast/
+Accept: application/json
+
+
+
+
+###
+GET {{HodlSolution_HostAddress}}/registration/
+Accept: application/json
+###
